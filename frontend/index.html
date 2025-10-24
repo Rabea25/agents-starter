@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Copilot</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Student Copilot</h1>
+      <div class="session">
+        <span>Session ID:</span>
+        <code id="session-id"></code>
+        <button id="reset-session">Start New Session</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="chat-panel">
+        <div class="chat-header">
+          <label for="mode">Mode:</label>
+          <select id="mode">
+            <option value="study_helper">Study Helper</option>
+            <option value="planner">Planner</option>
+          </select>
+        </div>
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+        <form id="chat-form" autocomplete="off">
+          <textarea id="chat-input" rows="3" placeholder="Ask me anything about your studies or planning..."></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <section class="info-panel">
+        <div class="card">
+          <div class="card-header">
+            <h2>Upcoming Tasks</h2>
+            <label>
+              Look ahead (days):
+              <input type="number" id="upcoming-days" min="1" max="30" value="7" />
+            </label>
+            <button id="refresh-upcoming">Refresh</button>
+          </div>
+          <ul id="upcoming-list" class="list"></ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Profile</h2>
+            <button id="refresh-profile">Refresh</button>
+          </div>
+          <dl id="profile-details"></dl>
+          <details>
+            <summary>Update profile</summary>
+            <form id="profile-form" autocomplete="off">
+              <div class="field">
+                <label>Name</label>
+                <input name="name" type="text" />
+              </div>
+              <div class="field">
+                <label>Major</label>
+                <input name="major" type="text" />
+              </div>
+              <div class="field">
+                <label>Year</label>
+                <select name="year">
+                  <option value="">Select</option>
+                  <option value="freshman">Freshman</option>
+                  <option value="sophomore">Sophomore</option>
+                  <option value="junior">Junior</option>
+                  <option value="senior">Senior</option>
+                  <option value="graduate">Graduate</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>University</label>
+                <input name="university" type="text" />
+              </div>
+              <div class="field">
+                <label>GPA</label>
+                <input name="gpa" type="number" step="0.01" min="0" max="4" />
+              </div>
+              <div class="field">
+                <label>Timezone</label>
+                <input name="timezone" type="text" />
+              </div>
+              <div class="field">
+                <label>Study goal (hours/week)</label>
+                <input name="study_goal_hours_per_week" type="number" min="0" />
+              </div>
+              <button type="submit">Save profile</button>
+            </form>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <template id="message-template">
+      <article class="message">
+        <div class="meta"></div>
+        <p class="content"></p>
+      </article>
+    </template>
+
+    <template id="task-template">
+      <li class="task-item">
+        <header>
+          <span class="title"></span>
+          <span class="badge"></span>
+        </header>
+        <p class="details"></p>
+        <footer></footer>
+      </li>
+    </template>
+
+    <script src="main.js" type="module"></script>
+  </body>
+</html>
